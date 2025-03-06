@@ -1,5 +1,5 @@
 import {Link, useLocation} from "react-router-dom";
-import testImage from "../assets/images/test-image.png";
+
 
 const ResultView = () => {
     const location = useLocation();

@@ -103,13 +103,13 @@ const QuizPage = () => {
             <div className="w-3/5">
                 <div className="h-screen flex flex-col items-center justify-center px-6">
                     {/* 질문 */}
-                    <h1 className="text-2xl font-bold text-center mb-4">
+                    <h1 className="text-2xl font-bold text-center mb-9">
                         {questions[currentQuestionIndex].question}
                     </h1>
 
                     {/* 선택지 A */}
                     <button
-                        className="w-full max-w-md px-6 py-4 mb-4 border-2 border-orange-500 rounded-lg shadow-md hover:bg-orange-100 transition"
+                        className="w-full max-w-md px-6 py-4 mb-4 border-2 border-[#00b7f9] rounded-lg shadow-md hover:bg-[rgba(173,253,255,0.3)] transition"
                         onClick={() => onAnswerClick(0)}
                     >
                         {questions[currentQuestionIndex].optionA}
@@ -117,17 +117,17 @@ const QuizPage = () => {
 
                     {/* 선택지 B */}
                     <button
-                        className="w-full max-w-md px-6 py-4 border-2 border-orange-500 rounded-lg shadow-md hover:bg-orange-100 transition"
+                        className="w-full max-w-md px-6 py-4 border-2 border-[#00b7f9] rounded-lg shadow-md hover:bg-[rgba(173,253,255,0.3)]  transition"
                         onClick={() => onAnswerClick(1)}
                     >
                         {questions[currentQuestionIndex].optionB}
                     </button>
 
                     {/* 진행 바 */}
-                    <div className="w-full max-w-lg mt-6">
+                    <div className="w-full max-w-lg mt-12">
                         <div className="w-full h-2 bg-gray-200 rounded-full">
                             <div
-                                className="h-2 bg-pink-500 rounded-full"
+                                className="h-2 bg-[#1e8eff] rounded-full"
                                 style={{ width: `${progress}%` }}
                             ></div>
                         </div>
