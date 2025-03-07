@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 const MainView = () => {
     return (
         <div className="h-screen bg-white flex flex-col items-center justify-start p-6">
-            {/*<h1 className="text-2xl font-bold">우리의 우정 징표 테스트</h1>*/}
-            {/*<p className="text-gray-500 mt-2">우리의 우정 징표는 어떤 물건일까?</p>*/}
             <div className="w-full max-w-lg mt-20 mb-6">
                 <img
                     src={testImage}

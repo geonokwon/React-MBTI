@@ -286,3 +286,4 @@ sketch
 # End of https://www.toptal.com/developers/gitignore/api/react,intellij,node
 /src/assets/images/test-image.png
 /public/vite.svg
+/src/assets/images/0_Title.png

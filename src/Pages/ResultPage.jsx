@@ -38,9 +38,9 @@ const ResultView = () => {
 
     // MBTI 결과에 따른 텍스트 매핑
     const mbtiTexts = {
-        "ESTJ": "",
+        "ESTJ": "/ESTJ.png",
         "ESTP": "모험을 즐기는 현실주의자",
-        "ESFJ": "배려의 리더",
+        "ESFJ": "/ESFJ.png",
         "ESFP": "자유로운 사교적 모험가",
         "ENTJ": "전략적인 리더형",
         "ENTP": "창의적인 혁신가",
@@ -61,18 +61,37 @@ const ResultView = () => {
 
 
     return (
-        <div className="h-screen flex flex-col items-center justify-center px-6">
-            <img
-                src={mbtiResultText}
-                alt="테스트 이미지"
-                className="w-1/2 rounded-lg shadow-lg"
-            />
-            <div className="mt-6">
+        <div className="min-h-screen flex flex-col items-center justify-between px-6 pt-8 pb-1">
+            {/* 이미지 영역 */}
+            <div className="w-auto flex justify-center">
+                <img
+                    src={mbtiResultText}
+                    alt="테스트 이미지"
+                    className="h-auto max-h-[140vh] w-auto rounded-lg shadow-lg scale-100 origin-top"
+                />
+            </div>
+
+            {/* 버튼 영역 */}
+            <div className="mt-2 w-full flex justify-center">
                 <Link to="/">
-                    <button className="w-full px-6 py-3 bg-gradient-to-r from-[#000046] to-[#1cb5e0] text-white font-bold rounded-lg shadow-md hover:from-[#1cb5e0] hover:to-[#000046] transition-all">다시하기!</button>
+                    <button className="px-6 py-3 bg-gradient-to-r from-[#29f19c] to-[#02a1f9] text-white font-bold rounded-lg shadow-md hover:from-[#02a1f9] hover:to-[#29f19c] transition-all mt-5 mb-10">
+                        다시하기!
+                    </button>
                 </Link>
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
     );
 };
 export default ResultView;
