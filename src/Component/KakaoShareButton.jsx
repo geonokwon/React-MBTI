@@ -1,3 +1,4 @@
+import Share_Btn_Kakao from "../assets/images/Share_Btn_Kakao.png";
 import { useEffect } from "react";
 
 const KakaoShareButton = () => {
@@ -18,7 +19,8 @@ const KakaoShareButton = () => {
                 content: {
                     title: "오늘의 추천 콘텐츠 📢",
                     description: "이 링크를 확인해보세요!",
-                    imageUrl: "https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png",
+                    imageUrl: "https://raw.githubusercontent.com/geonokwon/React-MBTI/main/src/assets/images/Share_Title_Image.jpg"
+        ,
                     link: {
                         mobileWebUrl: "https://developers.kakao.com",
                         webUrl: "https://developers.kakao.com",
@@ -38,11 +40,12 @@ const KakaoShareButton = () => {
     };
 
     return (
-        <button
-            onClick={shareKakao}
-            className="px-4 py-2 bg-yellow-400 text-black font-bold rounded-lg shadow-md hover:bg-yellow-500 transition"
-        >
-            📢 카카오톡으로 공유하기
+        <button onClick={shareKakao}>
+            <img
+                src={Share_Btn_Kakao}
+                alt="카카오톡 공유"
+                className="w-14 h-14 transition"
+            />
         </button>
     );
 };

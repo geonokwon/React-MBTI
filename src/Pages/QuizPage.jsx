@@ -2,10 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RightSidebar from "../Component/RightSidebar.jsx";
 import LeftSidebar from "../Component/LeftSidebar.jsx";
-
+import BackgroundMusicButton from "../Component/BackgroundMusicButton.jsx";
 
 const QuizPage = () => {
-    // 질문 리스트 (실제 데이터는 props 로 받을 수도 있음)
     const questions = [
         {
             question: "새로운 손님이 가게에 오면?",
@@ -68,16 +67,12 @@ const QuizPage = () => {
             optionB: "필요한 부분만 그때그때 수정하면서 자연스럽게 바꾼다.",
         },
     ];
+
     const navigate = useNavigate();
-
-
-    // 현재 진행 중인 질문 (0부터 시작)
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
-    // 선택지 저장 (A 선택: 0, B 선택: 1)
     const [answers, setAnswers] = useState([]);
+    const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
-    // A/B 선택 시 호출되는 함수
     const onAnswerClick = (choice) => {
         const updatedAnswers = [...answers, choice];
         setAnswers(updatedAnswers);
@@ -85,64 +80,62 @@ const QuizPage = () => {
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
-            // 👇 마지막 질문 선택 시 결과 페이지로 이동 + 선택된 답변 전달
             navigate("/result", { state: { answers: updatedAnswers } });
         }
     };
 
-    // 진행률 퍼센트 계산
-    const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
-
     return (
-        <div className="flex justify-center items-start min-h-screen bg-gray-100">
-            {/* 왼쪽 사이드바 */}
-            <div className="w-1/5">
+        <div className="flex flex-col md:flex-row justify-between items-start min-h-screen bg-gray-100">
+            {/* 모바일: 최상단 고정, 웹: 왼쪽 배치 */}
+            <div className="w-full md:w-[200px] fixed top-0 left-0 md:relative z-10 bg-white shadow-md md:h-screen">
                 <LeftSidebar />
             </div>
 
-            <div className="w-3/5">
-                <div className="h-screen flex flex-col items-center justify-center px-6">
-                    {/* 질문 */}
-                    <h1 className="text-2xl font-bold text-center mb-9">
-                        {questions[currentQuestionIndex].question}
-                    </h1>
+            {/* 메인 콘텐츠 (퀴즈 질문) */}
+            <div className="w-full md:w-3/5 flex flex-col items-center justify-center px-6 py-10 mt-20 md:mt-[80px]">
+                <BackgroundMusicButton />
+                {/* 질문 */}
+                <h1 className="text-2xl font-bold text-center mb-9">
+                    {questions[currentQuestionIndex].question}
+                </h1>
 
-                    {/* 선택지 A */}
-                    <button
-                        className="w-full max-w-md px-6 py-4 mb-4 border-2 border-[#00b7f9] rounded-lg shadow-md hover:bg-[rgba(173,253,255,0.3)] transition"
-                        onClick={() => onAnswerClick(0)}
-                    >
-                        {questions[currentQuestionIndex].optionA}
-                    </button>
+                {/* 선택지 A */}
+                <button
+                    className="w-full max-w-md px-6 py-4 mb-4 border-2 border-[#00b7f9] rounded-lg shadow-md hover:bg-[rgba(173,253,255,0.3)] transition"
+                    onClick={() => onAnswerClick(0)}
+                >
+                    {questions[currentQuestionIndex].optionA}
+                </button>
 
-                    {/* 선택지 B */}
-                    <button
-                        className="w-full max-w-md px-6 py-4 border-2 border-[#00b7f9] rounded-lg shadow-md hover:bg-[rgba(173,253,255,0.3)]  transition"
-                        onClick={() => onAnswerClick(1)}
-                    >
-                        {questions[currentQuestionIndex].optionB}
-                    </button>
+                {/* 선택지 B */}
+                <button
+                    className="w-full max-w-md px-6 py-4 border-2 border-[#00b7f9] rounded-lg shadow-md hover:bg-[rgba(173,253,255,0.3)] transition"
+                    onClick={() => onAnswerClick(1)}
+                >
+                    {questions[currentQuestionIndex].optionB}
+                </button>
 
-                    {/* 진행 바 */}
-                    <div className="w-full max-w-lg mt-12">
-                        <div className="w-full h-2 bg-gray-200 rounded-full">
-                            <div
-                                className="h-2 bg-[#1e8eff] rounded-full"
-                                style={{ width: `${progress}%` }}
-                            ></div>
-                        </div>
+                {/* 진행 바 */}
+                <div className="w-full max-w-lg mt-12">
+                    <div className="w-full h-2 bg-gray-200 rounded-full">
+                        <div
+                            className="h-2 bg-[#1e8eff] rounded-full"
+                            style={{ width: `${progress}%` }}
+                        ></div>
                     </div>
-
-                    {/* 현재 진행 상태 */}
-                    <p className="mt-4 text-lg font-semibold">{currentQuestionIndex + 1} / {questions.length}</p>
                 </div>
+
+                {/* 현재 진행 상태 */}
+                <p className="mt-4 text-lg font-semibold">{currentQuestionIndex + 1} / {questions.length}</p>
             </div>
 
-            {/* 오른쪽 사이드바 */}
-            <div className="w-1/5">
+            {/* 웹에서만 오른쪽 사이드바 표시 */}
+            <div className="hidden md:block w-[200px] fixed top-0 right-0 md:relative bg-white shadow-md md:h-screen">
                 <RightSidebar />
             </div>
         </div>
+
+
     );
 };
 

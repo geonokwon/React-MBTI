@@ -42,7 +42,7 @@ const ResultView = () => {
         "ESTP": "모험을 즐기는 현실주의자",
         "ESFJ": "/ESFJ.png",
         "ESFP": "자유로운 사교적 모험가",
-        "ENTJ": "전략적인 리더형",
+        "ENTJ": "/ENTJ.png",
         "ENTP": "창의적인 혁신가",
         "ENFJ": "사람을 이끄는 리더",
         "ENFP": "열정적인 자유 영혼",
@@ -74,23 +74,12 @@ const ResultView = () => {
             {/* 버튼 영역 */}
             <div className="mt-2 w-full flex justify-center">
                 <Link to="/">
-                    <button className="px-6 py-3 bg-gradient-to-r from-[#29f19c] to-[#02a1f9] text-white font-bold rounded-lg shadow-md hover:from-[#02a1f9] hover:to-[#29f19c] transition-all mt-5 mb-10">
+                    <button className="px-6 py-3 bg-gradient-to-r from-[#41a6e7] to-[#16d5de] text-white font-bold rounded-lg shadow-md hover:from-[#16d5de] hover:to-[#41a6e7] transition-all mt-5 mb-10">
                         다시하기!
                     </button>
                 </Link>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
 
     );
 };
