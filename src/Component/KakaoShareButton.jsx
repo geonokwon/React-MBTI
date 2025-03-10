@@ -19,7 +19,7 @@ const KakaoShareButton = () => {
                 content: {
                     title: "오늘의 추천 콘텐츠 📢",
                     description: "이 링크를 확인해보세요!",
-                    imageUrl: "https://raw.githubusercontent.com/geonokwon/React-MBTI/main/src/assets/images/Share_Title_Image.jpg"
+                    imageUrl: "https://raw.githubusercontent.com/geonokwon/React-MBTI/main/src/assets/images/Share_Title_Image.png"
         ,
                     link: {
                         mobileWebUrl: "https://developers.kakao.com",
