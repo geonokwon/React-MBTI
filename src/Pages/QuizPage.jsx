@@ -80,8 +80,36 @@ const QuizPage = () => {
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
-            navigate("/result", { state: { answers: updatedAnswers } });
+            //MBTI 유형을 계산해서 URL에 포함하여 전달
+            const mbtiResult = calculateMBTI(updatedAnswers);
+            navigate(`/result?mbti=${mbtiResult}`);
         }
+    };
+
+    //엠비티아이 계산부
+    const calculateMBTI = (answers) => {
+        const groupedAnswers = [
+            answers.slice(0, 3), // 외향(E) vs 내향(I)
+            answers.slice(3, 6), // 감각(S) vs 직관(N)
+            answers.slice(6, 9), // 사고(T) vs 감정(F)
+            answers.slice(9, 12) // 판단(J) vs 인식(P)
+        ];
+
+        const MBTI_Categories = {
+            E_I: groupedAnswers[0] || [],
+            S_N: groupedAnswers[1] || [],
+            T_F: groupedAnswers[2] || [],
+            J_P: groupedAnswers[3] || [],
+        };
+
+        const result = {
+            E_I: MBTI_Categories.E_I.filter(v => v === 0).length > MBTI_Categories.E_I.filter(v => v === 1).length ? "E" : "I",
+            S_N: MBTI_Categories.S_N.filter(v => v === 0).length > MBTI_Categories.S_N.filter(v => v === 1).length ? "S" : "N",
+            T_F: MBTI_Categories.T_F.filter(v => v === 0).length > MBTI_Categories.T_F.filter(v => v === 1).length ? "T" : "F",
+            J_P: MBTI_Categories.J_P.filter(v => v === 0).length > MBTI_Categories.J_P.filter(v => v === 1).length ? "J" : "P",
+        };
+
+        return `${result.E_I}${result.S_N}${result.T_F}${result.J_P}`;
     };
 
     return (
@@ -92,7 +120,7 @@ const QuizPage = () => {
             </div>
 
             {/* 메인 콘텐츠 (퀴즈 질문) */}
-            <div className="w-full md:w-3/5 flex flex-col items-center justify-center px-6 py-10 mt-20 md:mt-[80px]">
+            <div className="w-full md:w-3/5 flex flex-col items-center justify-center px-6 py-10 mt-32 md:mt-[80px]">
                 <BackgroundMusicButton />
                 {/* 질문 */}
                 <h1 className="text-2xl font-bold text-center mb-9">
